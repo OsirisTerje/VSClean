@@ -1,19 +1,9 @@
 import { useState } from 'react'
 
-function App() {
-    const [showCode, setShowCode] = useState(false);
     
     return (
         <div className="min-h-screen bg-background text-foreground p-8">
             <div className="max-w-4xl mx-auto">
-                <header className="mb-8">
-                    <h1 className="text-4xl font-bold mb-2">Visual Studio Project Cleaner Tool</h1>
-                    <p className="text-xl text-muted-foreground">
-                        A .NET command-line tool to clean up Visual Studio generated folders
-                    </p>
-                </header>
-                
-                <div className="grid gap-8">
                     <section className="bg-card p-6 rounded-lg shadow">
                         <h2 className="text-2xl font-bold mb-4">What Does It Do?</h2>
                         <p className="mb-4">
@@ -382,59 +372,3 @@ namespace VsCleanerTool
             return $"{size:0.00} {sizes[order]}";
         }
         
-        static async Task<bool> CheckIfVSLocked(string[] vsDirectories) 
-        {
-            try 
-            {
-                // Check if Visual Studio process is running
-                var vsProcesses = Process.GetProcessesByName("devenv");
-                if (vsProcesses.Length > 0) 
-                {
-                    return true;
-                }
-                
-                // Try to check if files are locked
-                foreach (var dir in vsDirectories) 
-                {
-                    if (Directory.Exists(dir)) 
-                    {
-                        try 
-                        {
-                            var lockFilePath = Path.Combine(dir, ".suo");
-                            if (File.Exists(lockFilePath)) 
-                            {
-                                using (var stream = File.Open(lockFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) 
-                                {
-                                    // If we can open it exclusively, it's not locked
-                                }
-                            }
-                        } 
-                        catch (IOException) 
-                        {
-                            // If we get an IOException, the file is probably locked
-                            return true;
-                        }
-                    }
-                }
-            } 
-            catch 
-            {
-                // If anything fails, assume it's better to warn the user
-                return true;
-            }
-            
-            return false;
-        }
-    }
-}`}
-                                </pre>
-                            </div>
-                        </section>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default App;
