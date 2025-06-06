@@ -35,8 +35,8 @@
    - Success: All folders properly deleted with confirmation
 
 4. **Lock Detection**
-   - What: Check if .vs folder is locked by Visual Studio before deletion
-   - Why: Prevent errors and alert user to close Visual Studio
+   - What: Check if .vs folder is locked by Visual Studio or VS Code before deletion
+   - Why: Prevent errors and alert user to close these applications
    - Success: Accurate detection and clear warning message
 
 5. **Help Documentation**
@@ -61,7 +61,7 @@
 ## Implementation Considerations
 - **Packaging**: Create as a .NET tool for easy installation via dotnet tool command
 - **Testing Focus**: Verify detection accuracy and safe deletion behavior
-- **Critical Questions**: How to reliably detect if a folder is locked by Visual Studio?
+- **Critical Questions**: How to reliably detect if a folder is locked by Visual Studio or VS Code?
 
 ## Technical Implementation Plan
 - Create a .NET Core console application

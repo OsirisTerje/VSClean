@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const App = () => {
+    const [showCode, setShowCode] = useState(false);
     
     return (
         <div className="min-h-screen bg-background text-foreground p-8">
@@ -37,7 +39,7 @@ import { useState } from 'react'
                             </li>
                             <li className="flex gap-3">
                                 <span className="text-primary">✓</span>
-                                <span>Detects if Visual Studio is locking folders</span>
+                                <span>Detects if Visual Studio or VS Code is locking folders</span>
                             </li>
                             <li className="flex gap-3">
                                 <span className="text-primary">✓</span>
@@ -103,12 +105,12 @@ BEHAVIOR:
   - Without options, the tool runs in preview mode only
   - The tool scans recursively from the current directory
   - It searches for .vs, bin, and obj folders
-  - In delete mode, it checks if Visual Studio is locking folders
+  - In delete mode, it checks if Visual Studio or VS Code is locking folders
   - A confirmation prompt is shown before any deletion occurs
   - After deletion, statistics about space saved are displayed
 
 NOTES:
-  - Close Visual Studio before running in delete mode
+  - Close Visual Studio and VS Code before running in delete mode
   - Running this tool will remove build artifacts and require rebuilding projects
   - The tool is safe to use but always make sure you have backups
                                 </pre>
@@ -250,8 +252,8 @@ namespace VsCleanerTool
                 bool isLocked = await CheckIfVSLocked(vsDirectories);
                 if (isLocked) 
                 {
-                    Console.WriteLine("\\nWARNING: Visual Studio appears to be running.");
-                    Console.WriteLine("Please close Visual Studio before proceeding.");
+                    Console.WriteLine("\\nWARNING: Visual Studio or VS Code appears to be running.");
+                    Console.WriteLine("Please close these applications before proceeding.");
                     Console.Write("Proceed anyway? (y/N): ");
                 } 
                 else 
@@ -308,12 +310,12 @@ namespace VsCleanerTool
             Console.WriteLine("  - Without options, the tool runs in preview mode only");
             Console.WriteLine("  - The tool scans recursively from the current directory");
             Console.WriteLine("  - It searches for .vs, bin, and obj folders");
-            Console.WriteLine("  - In delete mode, it checks if Visual Studio is locking folders");
+            Console.WriteLine("  - In delete mode, it checks if Visual Studio or VS Code is locking folders");
             Console.WriteLine("  - A confirmation prompt is shown before any deletion occurs");
             Console.WriteLine("  - After deletion, statistics about space saved are displayed");
             Console.WriteLine();
             Console.WriteLine("NOTES:");
-            Console.WriteLine("  - Close Visual Studio before running in delete mode");
+            Console.WriteLine("  - Close Visual Studio and VS Code before running in delete mode");
             Console.WriteLine("  - Running this tool will remove build artifacts and require rebuilding projects");
             Console.WriteLine("  - The tool is safe to use but always make sure you have backups");
         }
@@ -372,3 +374,38 @@ namespace VsCleanerTool
             return $"{size:0.00} {sizes[order]}";
         }
         
+        static async Task<bool> CheckIfVSLocked(string[] vsDirectories)
+        {
+            // Check if Visual Studio process is running
+            bool vsRunning = Process.GetProcessesByName("devenv").Length > 0;
+            
+            // Also check if VS Code is running (additional check)
+            bool vsCodeRunning = Process.GetProcessesByName("Code").Length > 0;
+            
+            // Check if any .vs directories are locked
+            bool dirLocked = false;
+            if (vsDirectories.Length > 0)
+            {
+                try
+                {
+                    // Try to create/open a test file in the .vs directory to check if locked
+                    string testPath = Path.Combine(vsDirectories[0], "locktest.tmp");
+                    using (var fs = new FileStream(testPath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        // If we reach here, the file was created successfully
+                        fs.Close();
+                    }
+                    // Delete the test file
+                    if (File.Exists(testPath))
+                        File.Delete(testPath);
+                }
+                catch
+                {
+                    dirLocked = true;
+                }
+            }
+            
+            return vsRunning || dirLocked;
+        }
+    }
+}`}
