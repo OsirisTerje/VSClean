@@ -39,6 +39,11 @@
    - Why: Prevent errors and alert user to close Visual Studio
    - Success: Accurate detection and clear warning message
 
+5. **Help Documentation**
+   - What: Provide comprehensive help with --help/-h flag showing usage instructions
+   - Why: Enable users to understand all tool features and proper usage
+   - Success: Clear, well-organized help output that covers all functions
+
 ## Design Direction
 - Command-line interface with clear, structured output
 - Color-coded terminal output for different types of messages (information, warnings, success)
@@ -57,5 +62,6 @@
 - Create a .NET Core console application
 - Use System.IO for file operations
 - Package as a .NET tool with appropriate metadata
-- Implement command-line argument parsing
+- Implement command-line argument parsing (--delete/-d, --help/-h)
 - Create clear, informative console output
+- Implement comprehensive help documentation

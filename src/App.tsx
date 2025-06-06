@@ -43,6 +43,10 @@ function App() {
                             </li>
                             <li className="flex gap-3">
                                 <span className="text-primary">✓</span>
+                                <span>Detailed help with usage instructions</span>
+                            </li>
+                            <li className="flex gap-3">
+                                <span className="text-primary">✓</span>
                                 <span>Detects if Visual Studio is locking folders</span>
                             </li>
                             <li className="flex gap-3">
@@ -70,8 +74,49 @@ function App() {
                             <div className="bg-muted p-4 rounded mb-2">
                                 <code># Preview mode<br />vsclean</code>
                             </div>
-                            <div className="bg-muted p-4 rounded">
+                            <div className="bg-muted p-4 rounded mb-2">
                                 <code># Delete mode<br />vsclean --delete</code>
+                            </div>
+                            <div className="bg-muted p-4 rounded">
+                                <code># Help mode<br />vsclean --help</code>
+                            </div>
+                        </div>
+                        
+                        <div className="mt-6">
+                            <h3 className="text-xl font-bold mb-2">Help Output</h3>
+                            <div className="bg-muted p-4 rounded text-sm font-mono overflow-auto">
+                                <pre className="text-foreground/80">
+HELP: Visual Studio Project Cleaner Tool
+======================================
+
+PURPOSE:
+  Cleans up Visual Studio generated folders (.vs, bin, obj) to free disk space
+  and resolve potential Visual Studio issues.
+
+USAGE:
+  vsclean [options]
+
+OPTIONS:
+  --help, -h     : Display this help message
+  --delete, -d   : Delete the identified folders (otherwise only preview)
+
+EXAMPLES:
+  vsclean             : Preview folders that would be deleted
+  vsclean --delete    : Delete all found folders after confirmation
+  vsclean -h          : Display help information
+
+BEHAVIOR:
+  - Without options, the tool runs in preview mode only
+  - The tool scans recursively from the current directory
+  - It searches for .vs, bin, and obj folders
+  - In delete mode, it checks if Visual Studio is locking folders
+  - A confirmation prompt is shown before any deletion occurs
+
+NOTES:
+  - Close Visual Studio before running in delete mode
+  - Running this tool will remove build artifacts and require rebuilding projects
+  - The tool is safe to use but always make sure you have backups
+                                </pre>
                             </div>
                         </div>
                     </section>
@@ -108,6 +153,14 @@ namespace VsCleanerTool
             Console.WriteLine("--------------------------------");
             
             bool deleteMode = args.Contains("--delete") || args.Contains("-d");
+            bool helpMode = args.Contains("--help") || args.Contains("-h");
+            
+            // Show help if requested and exit
+            if (helpMode)
+            {
+                DisplayHelp();
+                return 0;
+            }
             
             string currentDirectory = Directory.GetCurrentDirectory();
             
@@ -156,6 +209,42 @@ namespace VsCleanerTool
         }
         
         // Additional methods omitted for brevity
+        
+        static void DisplayHelp()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("HELP: Visual Studio Project Cleaner Tool");
+            Console.WriteLine("======================================");
+            Console.ResetColor();
+            
+            Console.WriteLine("\nPURPOSE:");
+            Console.WriteLine("  Cleans up Visual Studio generated folders (.vs, bin, obj) to free disk space");
+            Console.WriteLine("  and resolve potential Visual Studio issues.");
+            
+            Console.WriteLine("\nUSAGE:");
+            Console.WriteLine("  vsclean [options]");
+            
+            Console.WriteLine("\nOPTIONS:");
+            Console.WriteLine("  --help, -h     : Display this help message");
+            Console.WriteLine("  --delete, -d   : Delete the identified folders (otherwise only preview)");
+            
+            Console.WriteLine("\nEXAMPLES:");
+            Console.WriteLine("  vsclean             : Preview folders that would be deleted");
+            Console.WriteLine("  vsclean --delete    : Delete all found folders after confirmation");
+            Console.WriteLine("  vsclean -h          : Display help information");
+            
+            Console.WriteLine("\nBEHAVIOR:");
+            Console.WriteLine("  - Without options, the tool runs in preview mode only");
+            Console.WriteLine("  - The tool scans recursively from the current directory");
+            Console.WriteLine("  - It searches for .vs, bin, and obj folders");
+            Console.WriteLine("  - In delete mode, it checks if Visual Studio is locking folders");
+            Console.WriteLine("  - A confirmation prompt is shown before any deletion occurs");
+            
+            Console.WriteLine("\nNOTES:");
+            Console.WriteLine("  - Close Visual Studio before running in delete mode");
+            Console.WriteLine("  - Running this tool will remove build artifacts and require rebuilding projects");
+            Console.WriteLine("  - The tool is safe to use but always make sure you have backups");
+        }
     }
 }`}</pre>
                             </div>
