@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- Package info for .NET Tool -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>vsclean</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageId>VsCleanerTool</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Spark User</Authors>
+    <Description>A command-line tool to clean Visual Studio generated folders (.vs, bin, obj)</Description>
+    <PackageTags>dotnet;tool;visualstudio;cleanup</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
