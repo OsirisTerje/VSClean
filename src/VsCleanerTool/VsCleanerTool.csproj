@@ -12,12 +12,12 @@
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <PackageId>VsCleanerTool</PackageId>
     <Version>1.0.0</Version>
-    <Authors>Spark User</Authors>
+    <Authors>Terje Sandstrom</Authors>
     <Description>A command-line tool to clean Visual Studio generated folders (.vs, bin, obj)</Description>
     <PackageTags>dotnet;tool;visualstudio;cleanup</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/yourusername/vscleaner-tool</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/OsirisTerje/vs-project-cleanup-t</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
