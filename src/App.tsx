@@ -57,6 +57,10 @@ const App = () => {
                                 <span className="text-primary">✓</span>
                                 <span>README included in NuGet package for easy documentation access</span>
                             </li>
+                            <li className="flex gap-3">
+                                <span className="text-primary">✓</span>
+                                <span>Project site URL in package metadata for additional documentation</span>
+                            </li>
                         </ul>
                     </section>
                     

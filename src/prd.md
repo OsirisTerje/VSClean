@@ -54,6 +54,11 @@
    - Why: Provide documentation directly accessible through NuGet package gallery
    - Success: README properly rendered in NuGet package listing and available to users
 
+8. **Project Site URL in Package Metadata**
+   - What: Include a project site URL in the NuGet package metadata
+   - Why: Provide users with access to additional documentation and project updates
+   - Success: URL properly displayed in NuGet package listing and accessible to users
+
 ## Design Direction
 - Command-line interface with clear, structured output
 - Color-coded terminal output for different types of messages (information, warnings, success)
@@ -65,14 +70,14 @@
 
 ## Implementation Considerations
 - **Packaging**: Create as a .NET tool for easy installation via dotnet tool command
-- **Documentation**: Ensure proper README inclusion in NuGet package for improved user experience
+- **Documentation**: Ensure proper README inclusion and project site URL in NuGet package for improved user experience
 - **Testing Focus**: Verify detection accuracy and safe deletion behavior
 - **Critical Questions**: How to reliably detect if a folder is locked by Visual Studio or VS Code?
 
 ## Technical Implementation Plan
 - Create a .NET Core console application
 - Use System.IO for file operations
-- Package as a .NET tool with appropriate metadata
+- Package as a .NET tool with appropriate metadata (including project site URL)
 - Implement command-line argument parsing (--delete/-d, --help/-h)
 - Create clear, informative console output
 - Implement comprehensive help documentation

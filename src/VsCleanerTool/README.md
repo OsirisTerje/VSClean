@@ -2,6 +2,8 @@
 
 A .NET tool to clean up Visual Studio generated folders (.vs, bin, obj) from project directories.
 
+For full documentation and updates, visit our [project site](https://github.com/yourusername/vscleaner-tool).
+
 ## Installation
 
 Install as a global tool:

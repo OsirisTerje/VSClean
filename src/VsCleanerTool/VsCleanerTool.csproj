@@ -17,6 +17,7 @@
     <PackageTags>dotnet;tool;visualstudio;cleanup</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/yourusername/vscleaner-tool</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
