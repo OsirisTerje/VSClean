@@ -44,6 +44,11 @@
    - Why: Enable users to understand all tool features and proper usage
    - Success: Clear, well-organized help output that covers all functions
 
+6. **Statistics Display**
+   - What: Show statistics about disk space saved after deletion
+   - Why: Provide users with quantifiable results of the cleanup
+   - Success: Accurate calculation and clear presentation of space saved
+
 ## Design Direction
 - Command-line interface with clear, structured output
 - Color-coded terminal output for different types of messages (information, warnings, success)
