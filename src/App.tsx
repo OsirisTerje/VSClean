@@ -22,7 +22,7 @@ const App = () => {
                         </p>
                     </section>
                     
-                    <section className="bg-card p-6 rounded-lg shadow">
+                    <section className="bg-card p-6 rounded-lg shadow mt-4">
                         <h2 className="text-2xl font-bold mb-4">Key Features</h2>
                         <ul className="grid gap-4">
                             <li className="flex gap-3">
@@ -53,10 +53,14 @@ const App = () => {
                                 <span className="text-primary">✓</span>
                                 <span>Statistics on disk space saved after deletion</span>
                             </li>
+                            <li className="flex gap-3">
+                                <span className="text-primary">✓</span>
+                                <span>README included in NuGet package for easy documentation access</span>
+                            </li>
                         </ul>
                     </section>
                     
-                    <section className="bg-card p-6 rounded-lg shadow">
+                    <section className="bg-card p-6 rounded-lg shadow mt-4">
                         <h2 className="text-2xl font-bold mb-4">Installation & Usage</h2>
                         <div className="mb-6">
                             <h3 className="text-xl font-bold mb-2">Installation</h3>
@@ -118,7 +122,7 @@ NOTES:
                         </div>
                     </section>
 
-                    <section className="bg-card p-6 rounded-lg shadow">
+                    <section className="bg-card p-6 rounded-lg shadow mt-4">
                         <h2 className="text-2xl font-bold mb-4">Terminal Output Example</h2>
                         <div className="bg-black text-green-400 p-4 rounded font-mono text-sm">
                             <pre>
@@ -162,7 +166,7 @@ Deletion complete! Statistics:
                     </section>
                     
                     <button 
-                        className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90"
+                        className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90 mt-4"
                         onClick={() => setShowCode(!showCode)}
                     >
                         {showCode ? "Hide Code" : "Show Source Code"}

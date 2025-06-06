@@ -49,6 +49,11 @@
    - Why: Provide users with quantifiable results of the cleanup
    - Success: Accurate calculation and clear presentation of space saved
 
+7. **README Documentation in NuGet Package**
+   - What: Include the README.md file in the NuGet package
+   - Why: Provide documentation directly accessible through NuGet package gallery
+   - Success: README properly rendered in NuGet package listing and available to users
+
 ## Design Direction
 - Command-line interface with clear, structured output
 - Color-coded terminal output for different types of messages (information, warnings, success)
@@ -60,6 +65,7 @@
 
 ## Implementation Considerations
 - **Packaging**: Create as a .NET tool for easy installation via dotnet tool command
+- **Documentation**: Ensure proper README inclusion in NuGet package for improved user experience
 - **Testing Focus**: Verify detection accuracy and safe deletion behavior
 - **Critical Questions**: How to reliably detect if a folder is locked by Visual Studio or VS Code?
 
@@ -70,3 +76,4 @@
 - Implement command-line argument parsing (--delete/-d, --help/-h)
 - Create clear, informative console output
 - Implement comprehensive help documentation
+- Include README.md in NuGet package for documentation
